@@ -36,6 +36,6 @@
         state: present
 
     # stevek - gpg-agent required for apt-key mod. curl required for k3s fetching install script
-    - apt: "name={{ item }} state=present"
-      with_items: ['gpg-agent','curl']
-
+    - apt:
+        name: ['gpg-agent','curl']
+        state: present
