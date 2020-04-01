@@ -3,7 +3,7 @@
   tasks:
 # This if got error will still create the file. u have to remove it for the next run.
 # it requires at least 2 cpu and no swap on the master
- 
+
     - name: initialize the cluster
       shell: kubeadm init --pod-network-cidr=10.244.0.0/16 >> cluster_initialized.txt
       args:
@@ -25,7 +25,7 @@
         remote_src: yes
         owner: ubuntu
 
-    - name: install Pod network
+    - name: install Pod network (flannel)
       become: yes
       become_user: ubuntu
       shell: kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/a70459be0084506e4ec919aa1c114638878db11b/Documentation/kube-flannel.yml >> pod_network_setup.txt

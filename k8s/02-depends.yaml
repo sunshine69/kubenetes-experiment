@@ -1,24 +1,6 @@
 - hosts: all
   become: yes
   tasks:
-   - name: install Docker
-     apt:
-       name: docker.io
-       state: present
-       update_cache: true
-
-# I need to add this (stevek)
-   - name: enable docker servive
-     service: name=docker enabled=yes state=started
-
-   - name: install APT Transport HTTPS
-     apt:
-       name: apt-transport-https
-       state: present
-
-   # stevek - gpg-agent required for apt-key mod
-   - apt: name=gpg-agent state=present
-
    - name: add Kubernetes apt-key
      apt_key:
        url: https://packages.cloud.google.com/apt/doc/apt-key.gpg
